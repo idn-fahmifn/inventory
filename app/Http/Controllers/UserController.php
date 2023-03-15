@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\User;
 
 class UserController extends Controller
@@ -53,7 +54,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.detail', compact('user'));
     }
 
     /**
@@ -64,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -76,7 +79,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = $request->all();
+
+        if($request->input('password'))
+        {
+            // jika data password akan diubah, maka data yang baru akan di enkripsi 
+            $data['password'] = bcrypt($data['password']);
+        }
+        else
+        {
+            // jika data tidak diubah, maka akan menggunakan data lama dan tetap dienkripsi
+            $data = Arr::except($data,['password']);
+        }
+        $user->update($data);
+        return redirect('/user');
     }
 
     /**
@@ -87,6 +104,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::find($id);
+        $data->delete();
+        return back();
     }
 }

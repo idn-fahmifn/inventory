@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="card mt-4">
-                <div class="card-header">Data Kategori</div>
+                <div class="card-header">Data User</div>
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -77,8 +77,8 @@
                                             {{method_field('DELETE')}}
                                             <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('Apakah anda akan menghapus {{$row->user}} ?');">Hapus</button>
-                                            <a href="{{route('user.edit',$row->id)}}"
-                                                class="btn btn-success">Edit</a>
+                                            <a href="{{route('user.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{route('user.show',$row->id)}}" class="btn btn-success">Detail</a>
                                         </form>
                                     </td>
                                 </tr>
