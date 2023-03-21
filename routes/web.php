@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // route untuk ruangan
 Route::resource('kategori', 'KategoriController');
 Route::resource('user', 'UserController');
+Route::resource('ruangan', 'RuanganController');
+Route::resource('barang', 'BarangController');
 
 //  sama aja dengan kita menambahkan : 
 /*

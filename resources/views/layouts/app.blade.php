@@ -17,12 +17,13 @@
     </script>
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.2/standard-all/ckeditor.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
+ 
 </head>
 
 <body>
@@ -41,7 +42,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-link"><a href="/ruangan">Ruangan</a></li>
+                        <li class="nav-link"><a href="/user">User</a></li>
+                        <li class="nav-link"><a href="/kategori">Kategori</a></li>
+                        <li class="nav-link"><a href="/barang">Barang</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -90,7 +94,20 @@
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
+
     </script>
+    <script>
+        var konten = document.getElementById("konten");
+        CKEDITOR.replace(konten, {
+            width: '100%',
+            extraPlugins: 'editorplaceholder',
+            editorplaceholder: 'Deskripsi spesifikasi barang...',
+            uiColor: '#CCEAEE'
+        });
+        CKEDITOR.config.allowedContent = true;
+
+    </script>
+
 </body>
 
 </html>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Kategori;
+use App\Ruangan;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -14,7 +16,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $barang = Barang::all();
+        $kategori = Kategori::all();
+        $ruangan = Ruangan::all();
+        return view('barang.index', compact('barang','kategori','ruangan'));
     }
 
     /**
@@ -35,7 +40,19 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        if($request->hasFile('gambar'))
+        {
+            $destination_path = 'public/images/barang';
+            $image = $request->file('gambar');
+            $name = $image->getClientOriginalName();
+            $path = $request->file('gambar')->storeAs($destination_path, $name);
+            $input['gambar'] = $name;
+        }
+
+        Barang::create($input);
+        return redirect('/barang');
     }
 
     /**

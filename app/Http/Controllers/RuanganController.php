@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ruangan;
+use App\User;
 use Illuminate\Http\Request;
 
 class RuanganController extends Controller
@@ -14,7 +15,9 @@ class RuanganController extends Controller
      */
     public function index()
     {
-        //
+        $ruangan = Ruangan::all();
+        $user = User::all();
+        return view('ruangan.index', compact('ruangan', 'user'));
     }
 
     /**
@@ -35,7 +38,9 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Ruangan::create($input);
+        return redirect('/ruangan');
     }
 
     /**
@@ -44,9 +49,10 @@ class RuanganController extends Controller
      * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function show(Ruangan $ruangan)
+    public function show($id)
     {
-        //
+        $ruangan = Ruangan::find($id);
+        return view('ruangan.detail', compact('ruangan'));
     }
 
     /**
@@ -55,11 +61,13 @@ class RuanganController extends Controller
      * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ruangan $ruangan)
+    public function edit($id)
     {
-        //
+        $ruangan = Ruangan::find($id);
+        $user = User::all();
+        return view('ruangan.edit', compact('ruangan','user'));
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -67,9 +75,12 @@ class RuanganController extends Controller
      * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ruangan $ruangan)
+    public function update(Request $request, $id)
     {
-        //
+        $ruangan = Ruangan::findOrFail($id);
+        $data = $request->all();
+        $ruangan->update($data);
+        return redirect('/ruangan');
     }
 
     /**
@@ -78,8 +89,10 @@ class RuanganController extends Controller
      * @param  \App\Ruangan  $ruangan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ruangan $ruangan)
+    public function destroy($id)
     {
-        //
+        $data = Ruangan::findOrFail($id);
+        $data->delete();
+        return redirect('ruangan');
     }
 }
