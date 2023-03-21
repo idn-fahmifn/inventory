@@ -61,9 +61,10 @@ class BarangController extends Controller
      * @param  \App\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function show(Barang $barang)
+    public function show($id)
     {
-        //
+        $barang = Barang::find($id);
+        return view('barang.detail', compact('barang'));
     }
 
     /**

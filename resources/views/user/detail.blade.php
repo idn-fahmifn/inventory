@@ -33,7 +33,26 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        User Belum Memiliki Ruangan
+                        @if($ruangan)
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Nomor Ruangan</th>
+                                <th>Nama Ruangan</th>
+                            </thead>
+                            <tbody>
+                                @foreach($ruangan as $row)
+                                <tr>
+                                    <td>{{$row->nomor_ruangan}}</td>
+                                    <td>{{$row->nama_ruangan}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <div class="alert alert-danger">
+                            Petugas Belum Menjadi PIC Ruangan
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\User;
+use App\Ruangan;
 
 class UserController extends Controller
 {
@@ -55,7 +56,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('user.detail', compact('user'));
+        $ruangan = Ruangan::where('id_user', $id)->get()->all();
+        return view('user.detail', compact('user', 'ruangan'));
     }
 
     /**

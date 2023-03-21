@@ -101,6 +101,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="input-group">
+                                    
                                     <textarea class="form-control" name="spek" id="konten"></textarea>
                                 </div>
                             </div>
@@ -137,15 +138,15 @@
                                     <td>{{$row->nomor_barang}}</td>
                                     <td>{{$row->nama_barang}}</td>
                                     <td>{{$row->ruangan->nama_ruangan}}</td>
-                                    <td> 
+                                    <td>
                                         <form action="{{route('ruangan.destroy',$row->id)}}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Apakah anda akan menghapus {{$row->ruangan}} ?');">Hapus</button>
-                                            <a href="{{route('ruangan.edit',$row->id)}}"
+                                                onclick="return confirm('Apakah anda akan menghapus {{$row->barang}} ?');">Hapus</button>
+                                            <a href="{{route('barang.edit',$row->id)}}"
                                                 class="btn btn-warning">Edit</a>
-                                            <a href="{{route('ruangan.show',$row->id)}}"
+                                            <a href="{{route('barang.show',$row->id)}}"
                                                 class="btn btn-success">Detail</a>
                                         </form>
                                     </td>
