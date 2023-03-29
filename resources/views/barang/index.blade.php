@@ -38,7 +38,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Nomor Barang</span>
@@ -46,7 +46,7 @@
                                     <input type="text" name="nomor_barang" class="form-control"
                                         placeholder="Nomor Barang">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -139,7 +139,7 @@
                                     <td>{{$row->nama_barang}}</td>
                                     <td>{{$row->ruangan->nama_ruangan}}</td>
                                     <td>
-                                        <form action="{{route('ruangan.destroy',$row->id)}}" method="post">
+                                        <form action="{{route('barang.destroy',$row->id)}}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <button type="submit" class="btn btn-danger"

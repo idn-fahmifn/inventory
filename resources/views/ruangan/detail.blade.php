@@ -29,11 +29,28 @@
                 </div>
             </div>
             <div class="card mt-4">
-                <div class="card-header">Penanggung Jawab Ruangan</div>
+                <div class="card-header">Barang yang Tersedia</div>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        User Belum Memiliki Ruangan
+                        <table class="table table-hover" id="myTable">
+                            <thead>
+                                <th>Nomor Barang</th>
+                                <th>Nama Barang</th>
+                                <th>Detail</th>
+                            </thead>
+                            <tbody>
+                                @foreach($barang as $row)
+                                <tr>
+                                    <td>{{$row->nomor_barang}}</td>
+                                    <td>{{$row->nama_barang}}</td>
+                                    <td>
+                                        <a href="{{route('barang.show', $row->id)}}" class="btn btn-primary">Detail</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

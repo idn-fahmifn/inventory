@@ -12,7 +12,7 @@
                     <form action="{{route('ruangan.store')}}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Nomor Ruangan</span>
@@ -20,7 +20,7 @@
                                     <input type="text" name="nomor_ruangan" class="form-control"
                                         placeholder="Nomor Ruangan">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

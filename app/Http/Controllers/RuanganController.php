@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ruangan;
 use App\User;
+use App\Barang;
 use Illuminate\Http\Request;
 
 class RuanganController extends Controller
@@ -39,6 +40,7 @@ class RuanganController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $input['nomor_ruangan'] = 'Ruangan'.' '.random_int(100,9999);
         Ruangan::create($input);
         return redirect('/ruangan');
     }
@@ -52,7 +54,8 @@ class RuanganController extends Controller
     public function show($id)
     {
         $ruangan = Ruangan::find($id);
-        return view('ruangan.detail', compact('ruangan'));
+        $barang = Barang::where('id_ruangan', $id)->get()->all();
+        return view('ruangan.detail', compact('ruangan', 'barang'));
     }
 
     /**

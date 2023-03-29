@@ -41,7 +41,6 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-
         if($request->hasFile('gambar'))
         {
             $destination_path = 'public/images/barang';
@@ -50,7 +49,7 @@ class BarangController extends Controller
             $path = $request->file('gambar')->storeAs($destination_path, $name);
             $input['gambar'] = $name;
         }
-
+        $input['nomor_barang'] = 'Barang'.' '.random_int(100,9999);
         Barang::create($input);
         return redirect('/barang');
     }
@@ -73,9 +72,12 @@ class BarangController extends Controller
      * @param  \App\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    public function edit($id)
     {
-        //
+        $barang = Barang::find($id);
+        $kategori = Kategori::all();
+        $ruangan = Ruangan::all();
+        return view('barang.edit', compact('barang', 'kategori', 'ruangan'));
     }
 
     /**
@@ -85,9 +87,20 @@ class BarangController extends Controller
      * @param  \App\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Barang $barang)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $barang = Barang::find($id);
+        if($request->hasFile('gambar'))
+        {
+            $destination_path = 'public/images/barang';
+            $image = $request->file('gambar');
+            $name = $image->getClientOriginalName();
+            $path = $request->file('gambar')->storeAs($destination_path, $name);
+            $data['gambar'] = $name;
+        }
+        $barang->update($data);
+        return redirect('/barang');
     }
 
     /**
@@ -96,8 +109,10 @@ class BarangController extends Controller
      * @param  \App\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        //
+        $data = Barang::findOrFail($id);
+        $data->delete();
+        return redirect('barang');
     }
 }
