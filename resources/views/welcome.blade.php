@@ -87,16 +87,47 @@
         @endif
 
         <div class="content">
-            <div class="col-md-12">
-                <form action="" method="post">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari apa..?">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Cari</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" name="keyword" value="{{Request::get('keyword')}}" class="form-control"
+                                placeholder="Cari apa..?">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12">
+                    @if(Request::get('keyword'))
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="alert alert-success">
+                                Hasil Pencarian dari {{Request::get('keyword')}}
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th>Nama Barang</th>
+                                        <th>Nomor Barang</th>
+                                        <th>Pilihan</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($barang as $row)
+                                        <tr>
+                                            <td>{{$row->nama_barang}}</td>
+                                            <td>{{$row->nomor_barang}}</td>
+                                            <td>#</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </form>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
