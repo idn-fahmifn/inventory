@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         @if($ruangan)
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="myTable">
                             <thead>
                                 <th>Nomor Ruangan</th>
                                 <th>Nama Ruangan</th>
